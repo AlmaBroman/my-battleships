@@ -12,6 +12,8 @@ def getPlayerName():
     username = input('Type your name and press enter: ')
     print(f'Hello {username}')
 
+def main():
+    startMessage()
+    getPlayerName()
 
-startMessage()
-getPlayerName()
+main()
