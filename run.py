@@ -1,3 +1,11 @@
-# Your code goes here.
-# You can delete these comments, but do not change the name of this file
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
+def startMessage():
+
+    print('------------------------------\n')
+    print('MY BATTLESHIPS\n')
+    print('Try to sink all the ships, before')
+    print('the computer sinks all of yours!\n')
+    print('Board size: 4 x 4')
+    print('Top left is row 0, column 0.')
+
+
+startMessage()
