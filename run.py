@@ -15,9 +15,20 @@ def get_player_name():
     print(f'Hello {username}')
 
 
+def game_board():
+    """
+    Creates an empty gameboard
+    """
+    gridRow = '. '
+    gridColumn = gridRow * 5
+    gameBoard = (gridColumn + '\n') * 5
+    print(gameBoard)
+
+
 def main():
     start_message()
     get_player_name()
 
 
-main()
+game_board()
+#main()
