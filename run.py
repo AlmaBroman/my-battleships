@@ -19,10 +19,10 @@ def game_board():
     """
     Creates an empty gameboard
     """
-    positionMarker = ''
-    row = [positionMarker] * 5
-    column = [row] * 5
-    print(column)
+    column = ''
+    row = [column] * 5
+    gameBoard = [row] * 5
+    print(gameBoard)
 
 
 def main():
@@ -31,4 +31,4 @@ def main():
 
 
 game_board()
-#main()
+# main()
