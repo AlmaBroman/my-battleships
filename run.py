@@ -8,4 +8,10 @@ def startMessage():
     print('Top left is row 0, column 0.')
 
 
+def getPlayerName():
+    username = input('Type your name and press enter: ')
+    print(f'Hello {username}')
+
+
 startMessage()
+getPlayerName()
