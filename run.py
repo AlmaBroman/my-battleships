@@ -10,11 +10,6 @@ def start_message():
     print('Top left is row 0, column 0.')
 
 
-def get_player_name():
-    username = input('Type your name and press enter: ')
-    print(f'Hello {username}')
-
-
 def game_board():
     """
     Creates an empty gameboard
@@ -27,8 +22,10 @@ def game_board():
 
 def main():
     start_message()
-    get_player_name()
+    # get username
+    username = input("Type your name and press return: ")
+    print(f"\nHi {username} let's play!")
 
 
-game_board()
-# main()
+# game_board()
+main()
