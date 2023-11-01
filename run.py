@@ -1,5 +1,6 @@
 import random
 
+
 def start_message():
     """
     Inform user on how to play.
@@ -18,11 +19,11 @@ def empty_board():
 
 
 def random_rows():
-    return random.randrange(5),random.randrange(5),random.randrange(5)
+    return random.randrange(5), random.randrange(5), random.randrange(5)
 
 
 def random_cols():
-    allCols = [0,1,2,3]
+    allCols = [0, 1, 2, 3]
     return random.sample(allCols, k=3)
 
 
@@ -32,9 +33,9 @@ def show_board(boardName):
 
 
 def player_guess():
-    guessRow = input("\nType a number and press return to guess row: ")
+    guessRow = int(input("\nType a number and press return to guess row: "))
     print(f"you guessed row {guessRow}")
-    guessCol = input("\nType a number and press return to guess column: ")
+    guessCol = int(input("\nType a number and press return to guess column: "))
     print(f"you guessed column {guessCol}\n")
     playerGuess = [guessRow, guessCol]
     print(f"Coordinates: {playerGuess}")
@@ -70,7 +71,6 @@ def main():
     computerBoard[computerShipRow[2]][computerShipCol[2]]
     show_board(computerBoard)
     player_guess()
-    
 
 
 main()
