@@ -31,11 +31,21 @@ def show_board(boardName):
         print(*i)
 
 
-# Define empty gameboards
+def player_guess():
+    guessRow = input("\nType a number and press return to guess row: ")
+    print(f"you guessed row {guessRow}")
+    guessCol = input("\nType a number and press return to guess column: ")
+    print(f"you guessed column {guessCol}\n")
+    playerGuess = [guessRow, guessCol]
+    print(f"Coordinates: {playerGuess}")
+
+
+# gameboards
 ROWS = 5
 COLUMNS = 4
 playerBoard = empty_board()
 computerBoard = empty_board()
+# ships
 playerShipRow = random_rows()
 playerShipCol = random_cols()
 computerShipRow = random_rows()
@@ -53,12 +63,14 @@ def main():
     playerBoard[playerShipRow[1]][playerShipCol[1]] = " @"
     playerBoard[playerShipRow[2]][playerShipCol[2]] = " @"
     show_board(playerBoard)
-    # show computerss board!
+    # show computers board (but not the ships)!
     print("\nComputer's board: ")
     computerBoard[computerShipRow[0]][computerShipCol[0]]
     computerBoard[computerShipRow[1]][computerShipCol[1]]
     computerBoard[computerShipRow[2]][computerShipCol[2]]
     show_board(computerBoard)
+    player_guess()
+    
 
 
 main()
