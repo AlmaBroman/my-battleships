@@ -10,14 +10,16 @@ def start_message():
     print('Top left is row 0, column 0.')
 
 
-# Define empty gameboard
+# Define empty gameboards
 ROWS = 5
 COLUMNS = 4
-game_board = [[' .'] * COLUMNS for num in range(ROWS)]
+gameBoard = [[' .'] * COLUMNS for num in range(ROWS)]
+playerBoard = gameBoard
+computerBoard = gameBoard
 
 
-def show_game_board():
-    for i in game_board:
+def show_board(boardName):
+    for i in boardName:
         print(*i)
 
 
@@ -26,12 +28,12 @@ def main():
     # get username
     username = input("Type your name and press return: ")
     print(f"\nHi {username} let's play!\n")
-    # show players board with ships!!
-    print("Your board:")
-    show_game_board()
-    # show computer´s current board!!
-    print("\nComputer´s board: ")
-    show_game_board()
+    # show players board (preferably with ships)!
+    print(f"{username}'s board: ")
+    show_board(playerBoard)
+    # show computerss board!
+    print("\nComputer's board: ")
+    show_board(computerBoard)
 
 
 main()
