@@ -1,3 +1,5 @@
+import random
+
 def start_message():
     """
     Inform user on how to play.
@@ -7,20 +9,37 @@ def start_message():
     print('Try to sink all the ships, before')
     print('the computer sinks all of yours!\n')
     print('Board size: 4 x 5')
+    print('Number of ships: 3')
     print('Top left is row 0, column 0.')
 
 
-# Define empty gameboards
-ROWS = 5
-COLUMNS = 4
-gameBoard = [[' .'] * COLUMNS for num in range(ROWS)]
-playerBoard = gameBoard
-computerBoard = gameBoard
+def empty_board():
+    return [[' ~'] * COLUMNS for num in range(ROWS)]
+
+
+def random_rows():
+    return random.randrange(5),random.randrange(5),random.randrange(5)
+
+
+def random_cols():
+    allCols = [0,1,2,3]
+    return random.sample(allCols, k=3)
 
 
 def show_board(boardName):
     for i in boardName:
         print(*i)
+
+
+# Define empty gameboards
+ROWS = 5
+COLUMNS = 4
+playerBoard = empty_board()
+computerBoard = empty_board()
+playerShipRow = random_rows()
+playerShipCol = random_cols()
+computerShipRow = random_rows()
+computerShipCol = random_cols()
 
 
 def main():
@@ -30,9 +49,15 @@ def main():
     print(f"\nHi {username} let's play!\n")
     # show players board (preferably with ships)!
     print(f"{username}'s board: ")
+    playerBoard[playerShipRow[0]][playerShipCol[0]] = " @"
+    playerBoard[playerShipRow[1]][playerShipCol[1]] = " @"
+    playerBoard[playerShipRow[2]][playerShipCol[2]] = " @"
     show_board(playerBoard)
     # show computerss board!
     print("\nComputer's board: ")
+    computerBoard[computerShipRow[0]][computerShipCol[0]]
+    computerBoard[computerShipRow[1]][computerShipCol[1]]
+    computerBoard[computerShipRow[2]][computerShipCol[2]]
     show_board(computerBoard)
 
 
