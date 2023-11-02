@@ -3,43 +3,60 @@ import random
 
 def start_message():
     """
-    Inform user on how to play.
+    Prints info about the game and how to play to the console 
     """
     print('-----------------------------------\n')
     print('MY BATTLESHIPS\n')
     print('Try to sink all the ships, before')
     print('the computer sinks all of yours!\n')
-    print('Board size: 4 x 5')
+    print('Board size: 5 x 5')
     print('Number of ships: 3')
     print('Top left is row 0, column 0.')
 
 
 def empty_board():
+    """
+    Creates empty boards by list nested in list
+    """
     return [[' ~'] * COLUMNS for num in range(ROWS)]
 
 
 def random_rows():
+    """
+    Get three random numbers to choose location(rows) for ships
+    """
     return random.randrange(5), random.randrange(5), random.randrange(5)
 
 
 def random_cols():
-    allCols = [0, 1, 2, 3]
+    """
+    Get three random number for choosing location (column) for ships
+    sample -> makes sure that ships cant be in the same place
+    """
+    allCols = [0, 1, 2, 3, 4]
     return random.sample(allCols, k=3)
 
 
 def show_board(boardName):
+    """
+    prints every item in a board
+    """
     for i in boardName:
         print(*i)
 
 
 def player_guess():
     """
-    guessRow = int(input("\nType a number and press return to guess row: "))
-    print(f"you guessed row {guessRow}")
-    guessCol = int(input("\nType a number and press return to guess column: "))
-    print(f"you guessed column {guessCol}\n")
-    playerGuess = [guessRow, guessCol]
-    print(f"Coordinates: {playerGuess}")
+    get and validate player guess
+    """
+    guess_row()
+    guess_col()
+
+
+def guess_row():
+    """
+    get a valid player guess for Column
+    function loops if guess not valid
     """
     while True:
         print("\nPlease enter one number between 0 and 4 to choose a row")
@@ -47,15 +64,36 @@ def player_guess():
 
         guessRow = input("Type a number and press return: ")
 
-        if validate_guess(guessRow):
+        if validate_guess(guessRow, "row"):
             print(f"Valid guess! {guessRow}")
             break
 
 
-def validate_guess(playerGuess):
+def guess_col():
+    """
+    get a valid player guess for Column
+    function loops if guess not valid
+    """
+    while True:
+        print("\nPlease enter one number between 0 and 4 to choose a column")
+        print("(Valid numbers: 0, 1, 2, 3, 4)")
+
+        guessCol = input("Type a number and press return: ")
+
+        if validate_guess(guessCol, "column"):
+            print(f"Valid guess! {guessCol}")
+            break
+
+
+
+def validate_guess(playerGuess, direction):
+    """
+    validate guess
+    print errors for invalid guess
+    """
     try:
         inputData = int(playerGuess)
-        print(f"\nYou guessed row: {inputData}\n")
+        print(f"\nYou guessed {direction}: {inputData}\n")
         if inputData > 4:
             raise ValueError(
                 f"Your guess must be a number between 0 and 4"
@@ -73,7 +111,7 @@ def validate_guess(playerGuess):
 
 # gameboards
 ROWS = 5
-COLUMNS = 4
+COLUMNS = 5
 playerBoard = empty_board()
 computerBoard = empty_board()
 # ships
@@ -96,9 +134,9 @@ def main():
     show_board(playerBoard)
     # show computers board (but not the ships)!
     print("\nComputer's board: ")
-    computerBoard[computerShipRow[0]][computerShipCol[0]]
-    computerBoard[computerShipRow[1]][computerShipCol[1]]
-    computerBoard[computerShipRow[2]][computerShipCol[2]]
+    computerBoard[computerShipRow[0]][computerShipCol[0]] = " O"
+    computerBoard[computerShipRow[1]][computerShipCol[1]] = " O"
+    computerBoard[computerShipRow[2]][computerShipCol[2]] = " O"
     show_board(computerBoard)
     player_guess()
 
