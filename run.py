@@ -11,7 +11,7 @@ def start_message():
     print('the computer sinks all of yours!\n')
     print('Board size: 5 x 5')
     print('Number of ships: 3')
-    print('Top left is row 0, column 0.')
+    print('Top left is row 0, column 0.\n')
 
 
 def empty_board():
@@ -67,7 +67,6 @@ def guess_row():
         guessRow = input("Type a number and press return: \n")
 
         if validate_guess(guessRow, "row"):
-            print(f"Valid guess! {guessRow}")
             break
     return guessRow
 
@@ -79,12 +78,11 @@ def guess_col():
     """
     while True:
         print("\nPlease enter one number between 0 and 4 to choose a column")
-        print("(Valid numbers: 0, 1, 2, 3, 4)")
+        print("(Valid numbers: 0, 1, 2, 3, 4)\n")
 
         guessCol = input("Type a number and press return: \n")
 
         if validate_guess(guessCol, "column"):
-            print(f"Valid guess! {guessCol}")
             break
     return guessCol
 
@@ -106,6 +104,7 @@ def validate_guess(playerGuess, direction):
                 f"Your guess must be a number between 0 and 4"
             )
     except ValueError as e:
+        # This need to change in order for user to understand better
         print(f"Invalid data: {e}, please submit a valid number.")
         return False
 
@@ -142,9 +141,12 @@ def main():
     computerBoard[computerShipRow[2]][computerShipCol[2]] = " O"
     show_board(computerBoard)
     # get valid guess from player
+    # will need a way to compare player guess has been submitted previously
     playerGuess = player_guess()
-    print(playerGuess)
+    print("Your guess: ")
+    print(f"row{playerGuess[0]} & column{playerGuess[1]}")
     """
+    # w.i.p comparing/showing result from guess
     computerBoard[playerGuess[0]][playerGuess[1]] = " x"
     show_board(computerBoard)
     """
