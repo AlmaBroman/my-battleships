@@ -4,7 +4,7 @@ My battleships is a game
 
 Players does this against a computer
 
-live version of project
+link to live version of project
 
 am i responsive screen dump
 
@@ -19,12 +19,12 @@ Here i will write a description on how to play the game
    - how feature one works
    - another thing it does
 
-picture of feature 1
+picture of feature 1 (screendump)
 
 - feature 2
 - feature 3
 
-maybe another picture
+maybe another picture(screendump)
 
 ### Future Features
  - A feature i want to add in the future

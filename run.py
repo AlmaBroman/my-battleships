@@ -33,12 +33,42 @@ def show_board(boardName):
 
 
 def player_guess():
+    """
     guessRow = int(input("\nType a number and press return to guess row: "))
     print(f"you guessed row {guessRow}")
     guessCol = int(input("\nType a number and press return to guess column: "))
     print(f"you guessed column {guessCol}\n")
     playerGuess = [guessRow, guessCol]
     print(f"Coordinates: {playerGuess}")
+    """
+    while True:
+        print("\nPlease enter one number between 0 and 4 to choose a row")
+        print("(Valid numbers: 0, 1, 2, 3, 4)")
+
+        guessRow = input("Type a number and press return: ")
+
+        if validate_guess(guessRow):
+            print(f"Valid guess! {guessRow}")
+            break
+
+
+def validate_guess(playerGuess):
+    try:
+        inputData = int(playerGuess)
+        print(f"\nYou guessed row: {inputData}\n")
+        if inputData > 4:
+            raise ValueError(
+                f"Your guess must be a number between 0 and 4"
+            )
+        elif inputData < 0:
+            raise ValueError(
+                f"Your guess must be a number between 0 and 4"
+            )
+    except ValueError as e:
+        print(f"Invalid data: {e}, please submit a valid number.")
+        return False
+
+    return True
 
 
 # gameboards
