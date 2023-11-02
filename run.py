@@ -3,7 +3,7 @@ import random
 
 def start_message():
     """
-    Prints info about the game and how to play to the console 
+    Prints info about the game and how to play to the console
     """
     print('-----------------------------------\n')
     print('MY BATTLESHIPS\n')
@@ -49,8 +49,10 @@ def player_guess():
     """
     get and validate player guess
     """
-    guess_row()
-    guess_col()
+    guessRow = int(guess_row())
+    guessCol = int(guess_col())
+    playerGuess = [guessRow, guessCol]
+    return playerGuess
 
 
 def guess_row():
@@ -62,11 +64,12 @@ def guess_row():
         print("\nPlease enter one number between 0 and 4 to choose a row")
         print("(Valid numbers: 0, 1, 2, 3, 4)")
 
-        guessRow = input("Type a number and press return: ")
+        guessRow = input("Type a number and press return: \n")
 
         if validate_guess(guessRow, "row"):
             print(f"Valid guess! {guessRow}")
             break
+    return guessRow
 
 
 def guess_col():
@@ -78,12 +81,12 @@ def guess_col():
         print("\nPlease enter one number between 0 and 4 to choose a column")
         print("(Valid numbers: 0, 1, 2, 3, 4)")
 
-        guessCol = input("Type a number and press return: ")
+        guessCol = input("Type a number and press return: \n")
 
         if validate_guess(guessCol, "column"):
             print(f"Valid guess! {guessCol}")
             break
-
+    return guessCol
 
 
 def validate_guess(playerGuess, direction):
@@ -124,7 +127,7 @@ computerShipCol = random_cols()
 def main():
     start_message()
     # get username
-    username = input("Type your name and press return: ")
+    username = input("Type your name and press return: \n")
     print(f"\nHi {username} let's play!\n")
     # show players board (preferably with ships)!
     print(f"{username}'s board: ")
@@ -138,7 +141,13 @@ def main():
     computerBoard[computerShipRow[1]][computerShipCol[1]] = " O"
     computerBoard[computerShipRow[2]][computerShipCol[2]] = " O"
     show_board(computerBoard)
-    player_guess()
+    # get valid guess from player
+    """
+    playerGuess = player_guess()
+    computerBoard[playerGuess[0]][playerGuess[1]] = " x"
+    print("\nComputer's board: ")
+    show_board(computerBoard)
+    """
 
 
 main()
