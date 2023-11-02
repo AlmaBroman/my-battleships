@@ -119,8 +119,8 @@ computerBoard = empty_board()
 # ships
 playerShipRow = random_rows()
 playerShipCol = random_cols()
-computerShipRow = random_rows()
-computerShipCol = random_cols()
+compShipRow = random_rows()
+compShipCol = random_cols()
 
 
 def main():
@@ -134,21 +134,42 @@ def main():
     playerBoard[playerShipRow[1]][playerShipCol[1]] = " @"
     playerBoard[playerShipRow[2]][playerShipCol[2]] = " @"
     show_board(playerBoard)
-    # show computers board (but not the ships)!
+    # show computers board!
     print("\nComputer's board: ")
-    computerBoard[computerShipRow[0]][computerShipCol[0]] = " O"
-    computerBoard[computerShipRow[1]][computerShipCol[1]] = " O"
-    computerBoard[computerShipRow[2]][computerShipCol[2]] = " O"
+    # comment this out if you dont want to see where the ships are hiding
+    computerBoard[compShipRow[0]][compShipCol[0]] = " O"
+    computerBoard[compShipRow[1]][compShipCol[1]] = " O"
+    computerBoard[compShipRow[2]][compShipCol[2]] = " O"
+    # show board
     show_board(computerBoard)
     # get valid guess from player
     # will need a way to compare player guess has been submitted previously
     playerGuess = player_guess()
     print("Your guess: ")
-    print(f"row{playerGuess[0]} & column{playerGuess[1]}")
+    print(f"row {playerGuess[0]}, column {playerGuess[1]}\n")
+    if playerGuess[0] == compShipRow[0] and playerGuess[1] == compShipCol[0]:
+        print("You found a ship!\n")
+        computerBoard[playerGuess[0]][playerGuess[1]] = " @"
+        show_board(computerBoard)
+    elif playerGuess[0] == compShipRow[1] and playerGuess[1] == compShipCol[1]:
+        print("You found a ship!\n")
+        computerBoard[playerGuess[0]][playerGuess[1]] = " @"
+        show_board(computerBoard)
+    elif playerGuess[0] == compShipRow[2] and playerGuess[1] == compShipCol[2]:
+        computerBoard[playerGuess[0]][playerGuess[1]] = " @"
+        show_board(computerBoard)
+        print("You found a ship!\n")
+    else:
+        if computerBoard[playerGuess[0]][playerGuess[1]] == " x":
+            print("You already guessed this one!")
+        else:
+            print("Oh! You found some fish, but sadly no ships!\n")
+            computerBoard[playerGuess[0]][playerGuess[1]] = " x"
+            show_board(computerBoard)
     """
-    # w.i.p comparing/showing result from guess
-    computerBoard[playerGuess[0]][playerGuess[1]] = " x"
-    show_board(computerBoard)
+    # w.i.p Add a scoring system
+    when computer score/player score = NUM_SHIPS - game ends
+    else game loops
     """
 
 
