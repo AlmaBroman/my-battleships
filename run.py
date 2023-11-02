@@ -142,10 +142,10 @@ def main():
     computerBoard[computerShipRow[2]][computerShipCol[2]] = " O"
     show_board(computerBoard)
     # get valid guess from player
-    """
     playerGuess = player_guess()
+    print(playerGuess)
+    """
     computerBoard[playerGuess[0]][playerGuess[1]] = " x"
-    print("\nComputer's board: ")
     show_board(computerBoard)
     """
 
