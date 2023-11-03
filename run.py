@@ -138,68 +138,15 @@ shipRow = random_rows()
 shipCol = random_cols()
 
 
-def main():
-    start_message()
-    # get username
-    username = input("Type your name and press return: \n")
-    print(f"\nHi {username} let's play!\n")
-    print('------------------------------------------------------\n')
-
-    # show computers board!
-    print("\nBoard: ")
-
-    """
-    # comment this out if you dont want to see where the ships are hiding
-    board[shipRow[0]][shipCol[0]] = " O"
-    board[shipRow[1]][shipCol[1]] = " O"
-    board[shipRow[2]][shipCol[2]] = " O"
-    """
-
-    # show board
-    show_board(board)
-
-    # get valid guess from player
-    playerGuess = player_guess()
-    playerScore = 0
-    print("\nYour guess: ")
-    print(f"\nRow {playerGuess[0]}, Column {playerGuess[1]}\n")
-    print('------------------------------------------------------\n')
-    # update board
-    # different outcomes depending on if guess = shiplocation or not
-    playerScore = 0
-    if board[playerGuess[0]][playerGuess[1]] == " @":
-        print("You already guessed this one, try something else!")
-    elif playerGuess[0] == shipRow[0] and playerGuess[1] == shipCol[0]:
-        print("You found a ship!\n")
-        board[playerGuess[0]][playerGuess[1]] = " @"
-        playerScore = playerScore + 1
-    elif playerGuess[0] == shipRow[1] and playerGuess[1] == shipCol[1]:
-        print("You found a ship!\n")
-        board[playerGuess[0]][playerGuess[1]] = " @"
-        playerScore = playerScore + 1
-    elif playerGuess[0] == shipRow[2] and playerGuess[1] == shipCol[2]:
-        print("You found a ship!\n")
-        board[playerGuess[0]][playerGuess[1]] = " @"
-        playerScore = playerScore + 1
-    else:
-        if board[playerGuess[0]][playerGuess[1]] == " x":
-            print("You already guessed this one!")
-        else:
-            print("Oh! You found some fish, but sadly no ships!\n")
-            board[playerGuess[0]][playerGuess[1]] = " x"
-    print(f"{playerScore} of 3 ships found\n")
-    print('------------------------------------------------------\n')
-    # check if score > number of ships
-    # i while true -> ask if play again
-    # if false get new guess
+def show_result(playerGuess, playerScore, board):
     while playerScore < 3:
-        show_board(board)
 
         # get valid guess from player
         playerGuess = player_guess()
         print("\nYour guess: ")
         print(f"row {playerGuess[0]}, column {playerGuess[1]}\n")
         print('------------------------------------------------------\n')
+
         if board[playerGuess[0]][playerGuess[1]] == " @":
             print("You already guessed this one, try something else!")
         elif playerGuess[0] == shipRow[0] and playerGuess[1] == shipCol[0]:
@@ -214,18 +161,37 @@ def main():
             print("You found a ship!\n")
             board[playerGuess[0]][playerGuess[1]] = " @"
             playerScore = playerScore + 1
+        elif board[playerGuess[0]][playerGuess[1]] == " x":
+            print("You already guessed this one!")
         else:
-            if board[playerGuess[0]][playerGuess[1]] == " x":
-                print("You already guessed this one!")
-            else:
-                print("Oh! You found some fish, but sadly no ships!\n")
-                board[playerGuess[0]][playerGuess[1]] = " x"
-        print(f"\n{playerScore} of 3 ships found\n")
-        print('------------------------------------------------------\n')
+            print("Oh! You found some fish, but sadly no ships!\n")
+            board[playerGuess[0]][playerGuess[1]] = " x"
+            print(f"{playerScore} of 3 ships found\n")
+            print('------------------------------------------------------\n')          
+        show_board(board)
+
     else:
-        print("Congratulations you found all the ships!\n")
+        print("\nCongratulations you found all the ships!\n")
         print("Please refresh the page if you want to play again")
         print("note: when refreshing, the ships will change locations.\n")
+
+    return playerGuess, playerScore, board
+
+
+def main():
+    start_message()
+    # get username
+    username = input("Type your name and press return: \n")
+    print(f"\nHi {username} let's play!\n")
+    print('------------------------------------------------------\n')
+
+    # show computers board!
+    print("\nBoard: ")
+    show_board(board)
+    playerGuess = ""
+    playerScore = 0
+    print('------------------------------------------------------\n')
+    show_result(playerGuess, playerScore, board)
 
 
 main()
