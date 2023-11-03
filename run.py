@@ -78,7 +78,7 @@ def guess_row():
     function loops if guess not valid
     """
     while True:
-        print("\nPlease enter one number between 0 and 4 to choose a row")
+        print("\nEnter one number between 0 and 4 to choose a row")
         print("(Valid numbers: 0, 1, 2, 3, 4)")
 
         guessRow = input("Type a number and press return: \n")
@@ -94,7 +94,7 @@ def guess_col():
     function loops if guess not valid
     """
     while True:
-        print("\nPlease enter one number between 0 and 4 to choose a column")
+        print("\nEnter one number between 0 and 4 to choose a column")
         print("(Valid numbers: 0, 1, 2, 3, 4)\n")
 
         guessCol = input("Type a number and press return: \n")
@@ -113,15 +113,16 @@ def validate_guess(playerGuess):
         inputData = int(playerGuess)
         if inputData > 4:
             raise ValueError(
-                f"Your guess must be a number between 0 and 4"
+                f"Your guess cant be greater than 4"
             )
         elif inputData < 0:
             raise ValueError(
-                f"Your guess must be a number between 0 and 4"
+                f"Your guess cant be less than 0"
             )
     except ValueError as e:
         # This need to change in order for user to understand better
-        print(f"Invalid data: {e}, please submit a valid number.")
+        print(f"Invalid data: {e}")
+        print("Please submit a valid number.")
         return False
 
     return True
@@ -146,6 +147,11 @@ def main():
     # show computers board!
     print("\nBoard: ")
 
+    # comment this out if you dont want to see where the ships are hiding
+    board[shipRow[0]][shipCol[0]] = " O"
+    board[shipRow[1]][shipCol[1]] = " O"
+    board[shipRow[2]][shipCol[2]] = " O"
+
     # show board
     show_board(board)
 
@@ -154,10 +160,13 @@ def main():
     playerScore = 0
     print("\nYour guess: ")
     print(f"\nRow {playerGuess[0]}, Column {playerGuess[1]}\n")
+    print('------------------------------------------------------\n')
     # update board
     # different outcomes depending on if guess = shiplocation or not
     playerScore = 0
-    if playerGuess[0] == shipRow[0] and playerGuess[1] == shipCol[0]:
+    if board[playerGuess[0]][playerGuess[1]] == " @":
+        print("You already guessed this one, try something else!")
+    elif playerGuess[0] == shipRow[0] and playerGuess[1] == shipCol[0]:
         print("You found a ship!\n")
         board[playerGuess[0]][playerGuess[1]] = " @"
         playerScore = playerScore + 1
@@ -176,6 +185,7 @@ def main():
             print("Oh! You found some fish, but sadly no ships!\n")
             board[playerGuess[0]][playerGuess[1]] = " x"
     print(f"{playerScore} of 3 ships found\n")
+    print('------------------------------------------------------\n')
     # check if score > number of ships
     # i while true -> ask if play again
     # if false get new guess
@@ -186,7 +196,10 @@ def main():
         playerGuess = player_guess()
         print("\nYour guess: ")
         print(f"row {playerGuess[0]}, column {playerGuess[1]}\n")
-        if playerGuess[0] == shipRow[0] and playerGuess[1] == shipCol[0]:
+        print('------------------------------------------------------\n')
+        if board[playerGuess[0]][playerGuess[1]] == " @":
+            print("You already guessed this one, try something else!")
+        elif playerGuess[0] == shipRow[0] and playerGuess[1] == shipCol[0]:
             print("You found a ship!\n")
             board[playerGuess[0]][playerGuess[1]] = " @"
             playerScore = playerScore + 1
@@ -204,12 +217,12 @@ def main():
             else:
                 print("Oh! You found some fish, but sadly no ships!\n")
                 board[playerGuess[0]][playerGuess[1]] = " x"
-        print(f"{playerScore} of 3 ships found\n")
+        print(f"\n{playerScore} of 3 ships found\n")
+        print('------------------------------------------------------\n')
     else:
-        print("------------------------------------------------------")
-        print("Congratulations you found all the ships!")
+        print("Congratulations you found all the ships!\n")
         print("Please refresh the page if you want to play again")
-        print("note: when refreshing, the ships will change locations.")
+        print("note: when refreshing, the ships will change locations.\n")
 
 
 main()
