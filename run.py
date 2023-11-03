@@ -8,11 +8,26 @@ def start_message():
     print('------------------------------------------------------\n')
     print('MY BATTLESHIPS\n')
     print('------------------------------------------------------\n')
-    print('Try to sink all the ships, before')
-    print('the computer sinks all of yours!\n')
-    print('Board size: 5 x 5')
-    print('Number of ships: 3')
-    print('Top left is row 0, column 0.\n')
+    print('Welcome sailor!')
+    print('Can you find all the ships in this small square ocean?\n')
+    print('How to play:')
+    print('Guess where in the game board the three ships are hidden.')
+    print('Win the game by finding all three ships!\n')
+    print('You will be asked to type in a guess for row')
+    print('The top left of the board is row 0 column 0\n')
+    print('If you make a guess and find no ships:')
+    print('your guess will appear as an x (in example - row 3, column 1)')
+    print('If you make a guess and find a ship:')
+    print('your guess will appear as an @ (in example - row 1, column 4)\n')
+    print('Example: \n')
+    print('  0 1 2 3 4')
+    print('0 ~ ~ ~ ~ ~')
+    print('1 ~ ~ ~ ~ @')
+    print('2 ~ ~ ~ ~ ~')
+    print('3 ~ x ~ ~ ~')
+    print('4 ~ ~ ~ ~ ~\n')
+    print("P.S. The game will only end once you’ve found all three ships")
+    print('...soooo good luck!\n')
     print('------------------------------------------------------\n')
 
 
@@ -144,6 +159,8 @@ def main():
     playerScore = 0
     print("\nYour guess: ")
     print(f"\nRow {playerGuess[0]}, Column {playerGuess[1]}\n")
+    # update board
+    # different outcomes depending on if guess = shiplocation or not
     playerScore = 0
     if playerGuess[0] == shipRow[0] and playerGuess[1] == shipCol[0]:
         print("You found a ship!\n")
@@ -197,6 +214,7 @@ def main():
         print("------------------------------------------------------")
         print("Congratulations you found all the ships!")
         print("Please refresh the page if you want to play again")
+        print("note: when refreshing, the ships will change locations.")
 
 
 main()
