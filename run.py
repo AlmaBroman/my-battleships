@@ -147,10 +147,12 @@ def main():
     # show computers board!
     print("\nBoard: ")
 
+    """ 
     # comment this out if you dont want to see where the ships are hiding
     board[shipRow[0]][shipCol[0]] = " O"
     board[shipRow[1]][shipCol[1]] = " O"
     board[shipRow[2]][shipCol[2]] = " O"
+    """
 
     # show board
     show_board(board)
