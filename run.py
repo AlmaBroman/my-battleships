@@ -110,6 +110,11 @@ def validate_guess(playerGuess):
     print errors for invalid guess
     """
     try:
+        if not isinstance(playerGuess, int):
+            raise ValueError(
+                f"Invalid input"
+            )
+        
         inputData = int(playerGuess)
         if inputData > 4:
             raise ValueError(
@@ -121,7 +126,7 @@ def validate_guess(playerGuess):
             )
     except ValueError as e:
         # This need to change in order for user to understand better
-        print(f"Invalid data: {e}")
+        print(f"{e}")
         print("Please submit a valid number.")
         return False
 
