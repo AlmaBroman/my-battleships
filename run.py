@@ -5,13 +5,15 @@ def start_message():
     """
     Prints info about the game and how to play to the console
     """
-    print('-----------------------------------\n')
+    print('------------------------------------------------------\n')
     print('MY BATTLESHIPS\n')
+    print('------------------------------------------------------\n')
     print('Try to sink all the ships, before')
     print('the computer sinks all of yours!\n')
     print('Board size: 5 x 5')
     print('Number of ships: 3')
     print('Top left is row 0, column 0.\n')
+    print('------------------------------------------------------\n')
 
 
 def empty_board():
@@ -113,10 +115,10 @@ def validate_guess(playerGuess):
 # gameboards
 ROWS = 5
 COLUMNS = 5
-computerBoard = empty_board()
+board = empty_board()
 # ships
-compShipRow = random_rows()
-compShipCol = random_cols()
+shipRow = random_rows()
+shipCol = random_cols()
 
 
 def main():
@@ -124,82 +126,78 @@ def main():
     # get username
     username = input("Type your name and press return: \n")
     print(f"\nHi {username} let's play!\n")
+    print('------------------------------------------------------\n')
 
     # show computers board!
-    print("\nComputer's board: ")
+    print("\nBoard: ")
 
     # comment this out if you dont want to see where the ships are hiding
-    computerBoard[compShipRow[0]][compShipCol[0]] = " O"
-    computerBoard[compShipRow[1]][compShipCol[1]] = " O"
-    computerBoard[compShipRow[2]][compShipCol[2]] = " O"
+    board[shipRow[0]][shipCol[0]] = " O"
+    board[shipRow[1]][shipCol[1]] = " O"
+    board[shipRow[2]][shipCol[2]] = " O"
 
     # show board
-    show_board(computerBoard)
+    show_board(board)
 
     # get valid guess from player
     playerGuess = player_guess()
     playerScore = 0
-    print("Your guess: ")
-    print(f"row {playerGuess[0]}, column {playerGuess[1]}\n")
+    print("\nYour guess: ")
+    print(f"\nRow {playerGuess[0]}, Column {playerGuess[1]}\n")
     playerScore = 0
-    if playerGuess[0] == compShipRow[0] and playerGuess[1] == compShipCol[0]:
+    if playerGuess[0] == shipRow[0] and playerGuess[1] == shipCol[0]:
         print("You found a ship!\n")
-        computerBoard[playerGuess[0]][playerGuess[1]] = " @"
-        show_board(computerBoard)
+        board[playerGuess[0]][playerGuess[1]] = " @"
         playerScore = playerScore + 1
-    elif playerGuess[0] == compShipRow[1] and playerGuess[1] == compShipCol[1]:
+    elif playerGuess[0] == shipRow[1] and playerGuess[1] == shipCol[1]:
         print("You found a ship!\n")
-        computerBoard[playerGuess[0]][playerGuess[1]] = " @"
-        show_board(computerBoard)
+        board[playerGuess[0]][playerGuess[1]] = " @"
         playerScore = playerScore + 1
-    elif playerGuess[0] == compShipRow[2] and playerGuess[1] == compShipCol[2]:
+    elif playerGuess[0] == shipRow[2] and playerGuess[1] == shipCol[2]:
         print("You found a ship!\n")
-        computerBoard[playerGuess[0]][playerGuess[1]] = " @"
-        show_board(computerBoard)
+        board[playerGuess[0]][playerGuess[1]] = " @"
         playerScore = playerScore + 1
     else:
-        if computerBoard[playerGuess[0]][playerGuess[1]] == " x":
+        if board[playerGuess[0]][playerGuess[1]] == " x":
             print("You already guessed this one!")
         else:
             print("Oh! You found some fish, but sadly no ships!\n")
-            computerBoard[playerGuess[0]][playerGuess[1]] = " x"
-            show_board(computerBoard)
-    print(f"\nShips found: {playerScore}")
+            board[playerGuess[0]][playerGuess[1]] = " x"
+    print(f"{playerScore} of 3 ships found\n")
     # check if score > number of ships
     # i while true -> ask if play again
     # if false get new guess
     while playerScore < 3:
-        show_board(computerBoard)
+        show_board(board)
 
         # get valid guess from player
         playerGuess = player_guess()
-        print("Your guess: ")
+        print("\nYour guess: ")
         print(f"row {playerGuess[0]}, column {playerGuess[1]}\n")
-        if playerGuess[0] == compShipRow[0] and playerGuess[1] == compShipCol[0]:
+        if playerGuess[0] == shipRow[0] and playerGuess[1] == shipCol[0]:
             print("You found a ship!\n")
-            computerBoard[playerGuess[0]][playerGuess[1]] = " @"
-            show_board(computerBoard)
+            board[playerGuess[0]][playerGuess[1]] = " @"
             playerScore = playerScore + 1
-        elif playerGuess[0] == compShipRow[1] and playerGuess[1] == compShipCol[1]:
+        elif playerGuess[0] == shipRow[1] and playerGuess[1] == shipCol[1]:
             print("You found a ship!\n")
-            computerBoard[playerGuess[0]][playerGuess[1]] = " @"
-            show_board(computerBoard)
+            board[playerGuess[0]][playerGuess[1]] = " @"
             playerScore = playerScore + 1
-        elif playerGuess[0] == compShipRow[2] and playerGuess[1] == compShipCol[2]:
+        elif playerGuess[0] == shipRow[2] and playerGuess[1] == shipCol[2]:
             print("You found a ship!\n")
-            computerBoard[playerGuess[0]][playerGuess[1]] = " @"
-            show_board(computerBoard)
+            board[playerGuess[0]][playerGuess[1]] = " @"
             playerScore = playerScore + 1
         else:
-            if computerBoard[playerGuess[0]][playerGuess[1]] == " x":
+            if board[playerGuess[0]][playerGuess[1]] == " x":
                 print("You already guessed this one!")
             else:
                 print("Oh! You found some fish, but sadly no ships!\n")
-                computerBoard[playerGuess[0]][playerGuess[1]] = " x"
-                show_board(computerBoard)
-        print(f"\nShips found: {playerScore}")
+                board[playerGuess[0]][playerGuess[1]] = " x"
+        
+        print(f"{playerScore} of 3 ships found\n")
     else:
-        print("You found all the ships! Play again?")
+        print("------------------------------------------------------")
+        print("Congratulations you found all the ships!")
+        print("Please refresh the page if you want to play again")
 
 
 main()
