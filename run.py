@@ -66,7 +66,7 @@ def guess_row():
 
         guessRow = input("Type a number and press return: \n")
 
-        if validate_guess(guessRow, "row"):
+        if validate_guess(guessRow):
             break
     return guessRow
 
@@ -82,19 +82,18 @@ def guess_col():
 
         guessCol = input("Type a number and press return: \n")
 
-        if validate_guess(guessCol, "column"):
+        if validate_guess(guessCol):
             break
     return guessCol
 
 
-def validate_guess(playerGuess, direction):
+def validate_guess(playerGuess):
     """
     validate guess
     print errors for invalid guess
     """
     try:
         inputData = int(playerGuess)
-        print(f"\nYou guessed {direction}: {inputData}\n")
         if inputData > 4:
             raise ValueError(
                 f"Your guess must be a number between 0 and 4"
@@ -114,11 +113,8 @@ def validate_guess(playerGuess, direction):
 # gameboards
 ROWS = 5
 COLUMNS = 5
-playerBoard = empty_board()
 computerBoard = empty_board()
 # ships
-playerShipRow = random_rows()
-playerShipCol = random_cols()
 compShipRow = random_rows()
 compShipCol = random_cols()
 
@@ -128,37 +124,39 @@ def main():
     # get username
     username = input("Type your name and press return: \n")
     print(f"\nHi {username} let's play!\n")
-    # show players board (preferably with ships)!
-    print(f"{username}'s board: ")
-    playerBoard[playerShipRow[0]][playerShipCol[0]] = " @"
-    playerBoard[playerShipRow[1]][playerShipCol[1]] = " @"
-    playerBoard[playerShipRow[2]][playerShipCol[2]] = " @"
-    show_board(playerBoard)
+
     # show computers board!
     print("\nComputer's board: ")
+
     # comment this out if you dont want to see where the ships are hiding
     computerBoard[compShipRow[0]][compShipCol[0]] = " O"
     computerBoard[compShipRow[1]][compShipCol[1]] = " O"
     computerBoard[compShipRow[2]][compShipCol[2]] = " O"
+
     # show board
     show_board(computerBoard)
+
     # get valid guess from player
-    # will need a way to compare player guess has been submitted previously
     playerGuess = player_guess()
+    playerScore = 0
     print("Your guess: ")
     print(f"row {playerGuess[0]}, column {playerGuess[1]}\n")
+    playerScore = 0
     if playerGuess[0] == compShipRow[0] and playerGuess[1] == compShipCol[0]:
         print("You found a ship!\n")
         computerBoard[playerGuess[0]][playerGuess[1]] = " @"
         show_board(computerBoard)
+        playerScore = playerScore + 1
     elif playerGuess[0] == compShipRow[1] and playerGuess[1] == compShipCol[1]:
         print("You found a ship!\n")
         computerBoard[playerGuess[0]][playerGuess[1]] = " @"
         show_board(computerBoard)
+        playerScore = playerScore + 1
     elif playerGuess[0] == compShipRow[2] and playerGuess[1] == compShipCol[2]:
+        print("You found a ship!\n")
         computerBoard[playerGuess[0]][playerGuess[1]] = " @"
         show_board(computerBoard)
-        print("You found a ship!\n")
+        playerScore = playerScore + 1
     else:
         if computerBoard[playerGuess[0]][playerGuess[1]] == " x":
             print("You already guessed this one!")
@@ -166,11 +164,42 @@ def main():
             print("Oh! You found some fish, but sadly no ships!\n")
             computerBoard[playerGuess[0]][playerGuess[1]] = " x"
             show_board(computerBoard)
-    """
-    # w.i.p Add a scoring system
-    when computer score/player score = NUM_SHIPS - game ends
-    else game loops
-    """
+    print(f"\nShips found: {playerScore}")
+    # check if score > number of ships
+    # i while true -> ask if play again
+    # if false get new guess
+    while playerScore < 3:
+        show_board(computerBoard)
+
+        # get valid guess from player
+        playerGuess = player_guess()
+        print("Your guess: ")
+        print(f"row {playerGuess[0]}, column {playerGuess[1]}\n")
+        if playerGuess[0] == compShipRow[0] and playerGuess[1] == compShipCol[0]:
+            print("You found a ship!\n")
+            computerBoard[playerGuess[0]][playerGuess[1]] = " @"
+            show_board(computerBoard)
+            playerScore = playerScore + 1
+        elif playerGuess[0] == compShipRow[1] and playerGuess[1] == compShipCol[1]:
+            print("You found a ship!\n")
+            computerBoard[playerGuess[0]][playerGuess[1]] = " @"
+            show_board(computerBoard)
+            playerScore = playerScore + 1
+        elif playerGuess[0] == compShipRow[2] and playerGuess[1] == compShipCol[2]:
+            print("You found a ship!\n")
+            computerBoard[playerGuess[0]][playerGuess[1]] = " @"
+            show_board(computerBoard)
+            playerScore = playerScore + 1
+        else:
+            if computerBoard[playerGuess[0]][playerGuess[1]] == " x":
+                print("You already guessed this one!")
+            else:
+                print("Oh! You found some fish, but sadly no ships!\n")
+                computerBoard[playerGuess[0]][playerGuess[1]] = " x"
+                show_board(computerBoard)
+        print(f"\nShips found: {playerScore}")
+    else:
+        print("You found all the ships! Play again?")
 
 
 main()
