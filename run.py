@@ -192,7 +192,6 @@ def main():
             else:
                 print("Oh! You found some fish, but sadly no ships!\n")
                 board[playerGuess[0]][playerGuess[1]] = " x"
-        
         print(f"{playerScore} of 3 ships found\n")
     else:
         print("------------------------------------------------------")
