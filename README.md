@@ -1,8 +1,9 @@
 # My Battleships
 
-My battleships is a game
+My battleships is a one player guessing game inspired by the classic game battle ships.
 
-Players does this against a computer
+The User is given a board with three ships hidden in random positions and is asked to guess their location.
+The game ends when user has found all the ships.
 
 link to live version of project
 
