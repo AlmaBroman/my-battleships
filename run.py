@@ -1,5 +1,8 @@
 import random
 
+ROWS = 5
+COLUMNS = 5
+
 
 def start_message():
     """
@@ -110,11 +113,6 @@ def validate_guess(playerGuess):
     print errors for invalid guess
     """
     try:
-        if not isinstance(playerGuess, int):
-            raise ValueError(
-                f"Invalid input"
-            )
-        
         inputData = int(playerGuess)
         if inputData > 4:
             raise ValueError(
@@ -126,16 +124,14 @@ def validate_guess(playerGuess):
             )
     except ValueError as e:
         # This need to change in order for user to understand better
-        print(f"{e}")
-        print("Please submit a valid number.")
+        print(f"Invalid data: {e}")
+        print("Please try again.")
         return False
 
     return True
 
 
 # gameboards
-ROWS = 5
-COLUMNS = 5
 board = empty_board()
 # ships
 shipRow = random_rows()
@@ -152,7 +148,7 @@ def main():
     # show computers board!
     print("\nBoard: ")
 
-    """ 
+    """
     # comment this out if you dont want to see where the ships are hiding
     board[shipRow[0]][shipCol[0]] = " O"
     board[shipRow[1]][shipCol[1]] = " O"
