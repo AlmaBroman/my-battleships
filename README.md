@@ -2,14 +2,29 @@
 
 My battleships is a one player guessing game inspired by the classic game battle ships.
 
-link to live version of project
+link to live version of project:
+ - https://my-battleships-8acbbc848ac4.herokuapp.com/
 
-am i responsive screen dump
+![img](assets/readme-assets/responsive.png)
 
 ## How to play
 
 The User is given a board with three ships hidden in random positions and is asked to guess their location.
 The game ends when the user has found all the ships.
+
+## User stories
+
+ - User wants to play a guessing game
+   - user should be able to input name
+   - user should be able to input a valid guess for row/column
+   - user should be informed when and why guess is not valid
+   - user should be able to input a new guess if previous guess wasnt valid
+   - user should be able to see how many ships they have found
+   - user should be shown a message when completing the goal of the game
+
+## Flow chart
+
+![img](assets/readme-assets/flowchart.jpeg)
 
 ## Features
 
@@ -50,8 +65,6 @@ The game ends when the user has found all the ships.
     - Instructions for user on how to play again
     ![img](assets/readme-assets/9all-ships-found-end.png)
 
-
-
 ### Future Features
  - User can decide board dimensions
  - User can decide number of ships
@@ -59,9 +72,14 @@ The game ends when the user has found all the ships.
 
 ## Testing
 
-how did i test the project?
- - passed through a validation service?
- - The game has been tested manually in the terminal and with codeanywhere
+### Validator Testing
+
+ - The game was tested with CI's Python Linter and returned with no errors detected (https://pep8ci.herokuapp.com/)
+ ![img](assets/readme-assets/validator-testing.png)
+
+
+ ### Manual testing
+ - The game has been tested manually in the console and with codeanywhere
 
 ## Bugs
 
@@ -73,16 +91,11 @@ how did i test the project?
 
 - No detected bugs
 
-### Validator Testing
-
-- PEP8
-  - result from PEP8online.com
-
 ## Deployment
 
 This project was deployed by using Code Institute's mock terminal for Heroku.
 
-- steps for deployment:
+- Steps for deployment:
   - Fork or clone this repository
   - Create a new Heroku app
   - Set the buildpacks to Python and NodeJs in that order
@@ -94,3 +107,5 @@ This project was deployed by using Code Institute's mock terminal for Heroku.
 - Wikipedia for info about battleships game (https://en.wikipedia.org/wiki/Battleship_(game))
 - Code Institute Python course content for referencing and bug solving (https://codeinstitute.net/)
 - W3schools python content for referencing and bug solving (https://www.w3schools.com/python/default.asp)
+- Screendump for demonstration of responsiveness from https://ui.dev/amiresponsive
+- Flow chart was created using https://www.lucidchart.com/
