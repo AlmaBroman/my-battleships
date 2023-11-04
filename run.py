@@ -57,7 +57,7 @@ def random_cols():
     return random.sample(allCols, k=3)
 
 
-def show_board(boardName):
+def show_board(boardList):
     """
     prints every item in a board
     """
@@ -131,14 +131,19 @@ def validate_guess(playerGuess):
     return True
 
 
-# gameboards
-board = empty_board()
-# ships
+# getting the board ready
+boardList = empty_board()
 shipRow = random_rows()
 shipCol = random_cols()
 
 
-def show_result(playerGuess, playerScore, board):
+def run_game(playerGuess, playerScore, boardList):
+    """
+    Gets a valid guess from user and compares it to the board and score
+    checks if a guess has been made before - if so tells the player
+    updates the score and the board
+    loops if all are ships not found
+    """
     while playerScore < 3:
 
         # get valid guess from player
@@ -147,35 +152,35 @@ def show_result(playerGuess, playerScore, board):
         print(f"row {playerGuess[0]}, column {playerGuess[1]}\n")
         print('------------------------------------------------------\n')
 
-        if board[playerGuess[0]][playerGuess[1]] == " @":
+        if boardList[playerGuess[0]][playerGuess[1]] == " @":
             print("You already guessed this one, try something else!")
         elif playerGuess[0] == shipRow[0] and playerGuess[1] == shipCol[0]:
             print("You found a ship!\n")
-            board[playerGuess[0]][playerGuess[1]] = " @"
+            boardList[playerGuess[0]][playerGuess[1]] = " @"
             playerScore = playerScore + 1
         elif playerGuess[0] == shipRow[1] and playerGuess[1] == shipCol[1]:
             print("You found a ship!\n")
-            board[playerGuess[0]][playerGuess[1]] = " @"
+            boardList[playerGuess[0]][playerGuess[1]] = " @"
             playerScore = playerScore + 1
         elif playerGuess[0] == shipRow[2] and playerGuess[1] == shipCol[2]:
             print("You found a ship!\n")
-            board[playerGuess[0]][playerGuess[1]] = " @"
+            boardList[playerGuess[0]][playerGuess[1]] = " @"
             playerScore = playerScore + 1
-        elif board[playerGuess[0]][playerGuess[1]] == " x":
+        elif boardList[playerGuess[0]][playerGuess[1]] == " x":
             print("You already guessed this one!")
         else:
             print("Oh! You found some fish, but sadly no ships!\n")
-            board[playerGuess[0]][playerGuess[1]] = " x"
+            boardList[playerGuess[0]][playerGuess[1]] = " x"
             print(f"{playerScore} of 3 ships found\n")
-            print('------------------------------------------------------\n')          
-        show_board(board)
+            print('------------------------------------------------------\n')
+        show_board(boardList)
 
     else:
         print("\nCongratulations you found all the ships!\n")
         print("Please refresh the page if you want to play again")
         print("note: when refreshing, the ships will change locations.\n")
 
-    return playerGuess, playerScore, board
+    return playerGuess, playerScore, boardList
 
 
 def main():
@@ -184,14 +189,13 @@ def main():
     username = input("Type your name and press return: \n")
     print(f"\nHi {username} let's play!\n")
     print('------------------------------------------------------\n')
-
-    # show computers board!
+    # show empty board!
     print("\nBoard: ")
-    show_board(board)
+    show_board(boardList)
     playerGuess = ""
     playerScore = 0
     print('------------------------------------------------------\n')
-    show_result(playerGuess, playerScore, board)
+    run_game(playerGuess, playerScore, boardList)
 
 
 main()
